@@ -32,6 +32,7 @@ var ajax = function(method, url, data, callback) {
 var navigate = function(url) {
   console.log('adding to command request list');
   ajax('POST', '/addrequest/{{ session }}', {'method': 'GET', 'uri': url});
+  iframe.src = "/viewerframe/{{ session }}";
 }
 
 var iframe = document.getElementById('if');
@@ -46,9 +47,7 @@ iframe.onload = function() {
         navigate(e.target.href);
       }
     }
-  })
-  // intercept any form submissions
-  iframe.src = "/viewerframe/{{ session }}";
+  });
 }
 iframe.src = "/viewerframe/{{ session }}/stale";
 

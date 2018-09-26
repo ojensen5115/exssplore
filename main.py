@@ -34,9 +34,10 @@ def getnext(session):
 @app.route("/collect", methods=['POST'])
 def collect():
     session = request.form.get('session')
+    print(session)
     host = request.form.get('host')
     uri = request.form.get('uri')
-    payload = json.loads(request.form.get('payload'))
+    payload = request.form.get('payload')
     pagecache[session] = {'host': host, 'uri': uri, 'payload': payload, 'old': False}
     return "ok"
 
